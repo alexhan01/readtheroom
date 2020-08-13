@@ -10,9 +10,10 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <h1>We now have Auth!</h1>
       </header>
-      <AmplifySignOut />
+      {/* <AmplifySignOut /> */}
     </div>
   );
 }
 
-export default withAuthenticator(App);
+// export default withAuthenticator(App);
+export default App;
