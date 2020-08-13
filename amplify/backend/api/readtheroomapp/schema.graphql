@@ -1,0 +1,18 @@
+type SlackWorkspace @model {
+  title: String!
+  channels: [SlackChannel!]!
+}
+
+type SlackChannel @model {
+  id: String!
+  name: String!
+  name_normalized: String!
+  num_members: Int!
+}
+
+type SlackMessage @model {
+  text: String!
+  client_msg_id: String!
+  type: String!
+  user: String!
+}

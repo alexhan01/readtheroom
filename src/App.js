@@ -7,8 +7,12 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>We now have Auth!</h1>
+        {/* <img src={logo} className="App-logo" alt="logo" /> */}
+        <h1>Add Slack URL</h1>
+        <form>
+            <input type="text" name="name" />
+          <input type="submit" value="Submit" />
+        </form>
       </header>
       {/* <AmplifySignOut /> */}
     </div>
