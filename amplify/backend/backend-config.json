@@ -1,0 +1,10 @@
+{
+	"auth": {
+		"readtheroom1f95b87f": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"customAuth": false
+		}
+	}
+}

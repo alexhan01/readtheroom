@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-readtheroom-dev-04500-authRole",
+            "UnauthRoleArn": "arn:aws:iam::165882859180:role/amplify-readtheroom-dev-04500-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::165882859180:role/amplify-readtheroom-dev-04500-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-readtheroom-dev-04500-deployment",
+            "UnauthRoleName": "amplify-readtheroom-dev-04500-unauthRole",
+            "StackName": "amplify-readtheroom-dev-04500",
+            "StackId": "arn:aws:cloudformation:us-east-1:165882859180:stack/amplify-readtheroom-dev-04500/e63c25b0-dd38-11ea-835b-0e660dd6b3d4",
+            "AmplifyAppId": "d1irk356cjnals"
+        },
+        "categories": {
+            "auth": {
+                "readtheroom1f95b87f": {}
+            }
+        }
+    }
+}
