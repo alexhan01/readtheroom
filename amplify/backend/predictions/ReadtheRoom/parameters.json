@@ -1,0 +1,13 @@
+{
+    "resourceName": "ReadtheRoom",
+    "interpretPolicyName": "interpretPolicyc0e367c1",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "interpretType": "interpretText",
+    "type": "SENTIMENT",
+    "access": "authAndGuest"
+}

@@ -1,71 +1,54 @@
 import React, { useState } from 'react';
+
 import './App.css';
+import Amplify, { Storage, Predictions } from 'aws-amplify';
+import { AmazonAIPredictionsProvider } from '@aws-amplify/predictions';
 
+// Syncing with the cloud
+import awsconfig from "./aws-exports";
 
-// import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
+Amplify.configure(awsconfig);
+Amplify.addPluggable(new AmazonAIPredictionsProvider());
 
-// Bot Setup
-// const SlackBot = require('slackbots');
-// const axios = require('axios');
+function SentimentAnalysis() {
+  const [response, setResponse] = useState("Input some text and click enter to test");
+  const [textToInterpret, setTextToInterpret] = useState("Write some text here");
 
-// // Store botToken elsewhere
-// const botToken = 
-// const bot = new SlackBot( {
-//   token: "xoxp-1304356200724-1298376052851-1304368205076-130d434d4e8b65918aa01dc4dd7efc17",
-//   name: "SentiVenti",
-// })
+  function interpretFromPredictions() {
+    Predictions.interpret({
+      text: {
+        source: {
+          text: textToInterpret,
+        },
+        type: "ALL"
+      }
+    }).then(result => setResponse(JSON.stringify(result, null, 2)))
+      .catch(err => setResponse(JSON.stringify(err, null, 2)))
+  }
+
+  function setText(event) {
+    setTextToInterpret(event.target.value);
+  }
+  
+  return (
+    <div className="Text">
+      <div>
+        <h3>Sentiment Analysis</h3>
+        <input value={textToInterpret} onChange={setText}></input>
+        <button onClick={interpretFromPredictions}>test</button>
+        <p>{ response }</p>
+      </div>
+    </div>
+  )
+}
 
 function App() {
-  // Managing Form Data
-  // const [formData, setFormData] = useState(initialFormState);
-
-  // WMethod that takes the string input for url 
-  // Note: need validation checking to see if it's a valid url
-  // async function submitLink() {
-  //   //stub;
-  // }
-
-  // // Method that fetches channels associated with the given Workspace
-  // async function fetchChannels() {
-  //   //stub;
-  // }
-
-  // Method
-  // viewChannelSelection = () => {
-  //   this.setState( {
-
-  //   })
-  // }
-
   return (
     <div className="App">
-      <h1>Test</h1>
-        {/* <h1>Load Chennel Selection</h1>
-        <button className="btn" onClick={viewChannelSelection}>View Channel Selection</button>
-        <h1>Load Dashboard</h1>
-        <button className="btn" onClick={viewDashboard}></button> */}
-    {/* 
-      <h1>Read the Room</h1>
-      {/* Input 
-      <input
-      />
-    */}
-      {/* <a href="https://slack.com/oauth/v2/authorize?scope=incoming-webhook&client_id=1304356200724.1310798496561">
-        <img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" />
-      </a> */}
-      {/* <button onClick={ submitLink }>Submit</button> */}
-      {/* <AmplifySignOut /> */}
+        Text Interpretation
+        <SentimentAnalysis />
     </div>
   );
 }
 
-// export default withAuthenticator(App);
 export default App;
-
-/*
-Design
-
-Landing Page
-Load ChannelSelection
-Depending on ChannelSelection, load a ver. of Dashboard.
-*/
