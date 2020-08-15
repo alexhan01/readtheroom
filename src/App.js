@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
+
+
 // import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 
 // Bot Setup
@@ -29,18 +31,19 @@ function App() {
   // }
 
   // Method
-  viewChannelSelection = () => {
-    this.setState( {
+  // viewChannelSelection = () => {
+  //   this.setState( {
 
-    })
-  }
+  //   })
+  // }
 
   return (
     <div className="App">
-        <h1>Load Chennel Selection</h1>
+      <h1>Test</h1>
+        {/* <h1>Load Chennel Selection</h1>
         <button className="btn" onClick={viewChannelSelection}>View Channel Selection</button>
         <h1>Load Dashboard</h1>
-        <button className="btn" onClick={viewDashboard}></button>
+        <button className="btn" onClick={viewDashboard}></button> */}
     {/* 
       <h1>Read the Room</h1>
       {/* Input 
