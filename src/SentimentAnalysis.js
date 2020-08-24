@@ -1,49 +1,42 @@
 import React, { useState } from 'react';
-import { Predictions } from 'aws-amplify';
+import { Storage, Predictions } from 'aws-amplify';
 
-// import downloadFilesFromS3 from './GetData.js';
-
-var BUCKET = "slack-sentiment-analysis-messaging-data";
+// var BUCKET = 'slack-sentiment-analysis-messaging-data';
 
 // const dotenv = require('dotenv');
 // dotenv.config;
 
 // SETTINGS
-var ACCESS_KEY = process.env.ACCESS_KEY;
-var SECRET_KEY = process.env.SECRET_KEY;
+// var ACCESS_KEY = process.env.ACCESS_KEY;
+// var SECRET_KEY = process.env.SECRET_KEY;
 
-var async = require('async');
-var fs = require('fs');
-var AWS = require('aws-sdk');
+// var async = require('async');
+// var fs = require('fs');
+// var AWS = require('aws-sdk');
 
-AWS.config.update(
-  {
-    accessKeyId: ACCESS_KEY,
-    secretAccessKey: SECRET_KEY,
-  }
-);
+// var s3 = new AWS.S3();
 
-function downloadFilesFromS3() {
-  var s3 = new AWS.S3();
-  var params = {
-    Bucket: BUCKET,
-  };
-  var target="./data/test.txt"
+// AWS.config.update(
+//   {
+//     accessKeyId: ACCESS_KEY,
+//     secretAccessKey: SECRET_KEY,
+//   }
+// );
 
-  s3.listObjectsV2(params, function(err, data) {
-    if (err) console.log(err, err.stack); // Check error 
-    else fs.writeFile(target,data) //write to text file
-  });
-}
+// var params = {
+//   Bucket: BUCKET
+// };
 
 function SentimentAnalysis() {
     const [response, setResponse] = useState("Input some text and click enter to test");
     const [textToInterpret, setTextToInterpret] = useState("Write some text here");
-  
-    // Function that takes in all the texts in the S3 Object on a daily basis
-    downloadFilesFromS3();
+    // const json = Storage.get('readtheroom/8b267f7e-b383-4a26-a529-720a77ca2ac7/386704655-2020-08-24T14:27:05');
+    const json = Storage.get('s3://slackmessagesdata04500-dev/readtheroom/8b267f7e-b383-4a26-a529-720a77ca2ac7/386704655-2020-08-24T14:27:05');
+    const obj = JSON.stringify(json, null, 2);
 
-    // Function that runs interpretFromPredictions through all objects in the S3
+    function retrieveMessages() {
+      //stub;
+    }
 
     function interpretFromPredictions() {
       Predictions.interpret({
@@ -57,6 +50,10 @@ function SentimentAnalysis() {
         .catch(err => setResponse(JSON.stringify(err, null, 2)))
     }
   
+    function loadData() {
+      setResponse(obj);
+    }
+
     function setText(event) {
       setTextToInterpret(event.target.value);
     }
@@ -65,8 +62,9 @@ function SentimentAnalysis() {
       <div className="Text">
         <div>
           <h3>Sentiment Analysis</h3>
-          <input value={textToInterpret} onChange={setText}></input>
-          <button onClick={interpretFromPredictions}>test</button>
+          {/* <input value={textToInterpret} onChange={setText}></input> */}
+          {/* <button onClick={ interpretFromPredictions }>test</button> */}
+          <button onClick={ loadData }>Load S3 Data</button>
           <p>{ response }</p>
         </div>
       </div>

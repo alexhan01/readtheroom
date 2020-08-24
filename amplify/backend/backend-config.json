@@ -31,5 +31,29 @@
 			"service": "Comprehend",
 			"interpretType": "interpretText"
 		}
+	},
+	"function": {
+		"S3Triggerf1b5ec33": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true
+		}
+	},
+	"storage": {
+		"slackmessages": {
+			"service": "S3",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [
+				{
+					"category": "function",
+					"resourceName": "S3Triggerf1b5ec33",
+					"attributes": [
+						"Name",
+						"Arn",
+						"LambdaExecutionRole"
+					]
+				}
+			]
+		}
 	}
 }

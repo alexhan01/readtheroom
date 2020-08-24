@@ -1,6 +1,6 @@
 {
     "identityPoolName": "readtheroom1f95b87f_identitypool_1f95b87f",
-    "allowUnauthenticatedIdentities": true,
+    "allowUnauthenticatedIdentities": false,
     "resourceNameTruncated": "readth1f95b87f",
     "userPoolName": "readtheroom1f95b87f_userpool_1f95b87f",
     "autoVerifiedAttributes": [
